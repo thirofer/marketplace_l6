@@ -1,0 +1,19 @@
+<?php
+
+namespace Database\Factories;
+
+/** @var \Illuminate\Database\Eloquent\Factory $factory */
+use \App\Models\Store;
+use Faker\Generator as Faker;
+use Illuminate\Support\Str;
+
+$factory->define(\App\Models\Store::class, function (Faker $faker){
+    return [
+        'name' => $faker->name ,
+        'description' => $faker ->sentence,
+        'phone' => $faker-> phoneNumber ,
+        'mobile_phone' => $faker-> phoneNumber,
+        'slug' => $faker-> slug,
+
+    ];
+});
