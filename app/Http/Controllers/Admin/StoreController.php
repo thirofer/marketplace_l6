@@ -36,6 +36,10 @@ class StoreController extends Controller
         $data = $request->all();
         $user=auth()->user()->name();
 
+        if($request -> hasFile('logo')){
+            $data['logo'] = $this->imageUpload($request->file( 'logo'));
+        }
+
         $store = $user->store()->create($data);
 
         flash('Loja criada com sucesso!')->success();
@@ -54,8 +58,8 @@ class StoreController extends Controller
     {
         $data = $request->all();
 
-        $store = $this->store->find($store);
-        $store -> update($data);
+        $store = \App\Models\Store::find($store);
+
 
         flash('Loja atualizada com sucesso!')->success();
         return redirect ()->route('admin.stores.index');

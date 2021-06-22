@@ -55,7 +55,7 @@
             <label>Categorias</label>
             <select name="categories[]" id="" class="form-control" multiple>
                 @foreach($categories as $category)
-                    <option value="{{$category->id}}}">{{$category->name}}</option>
+                    <option value="{{$category->id}}">{{$category->name}}</option>
                 @endforeach
             </select>
         </div>

@@ -112,6 +112,7 @@ Route::group(['middleware'=>['auth']], function(){
         Route::resource('products', '\\App\\Http\\Controllers\\Admin\\ProductController');
         Route::resource('categories', '\\App\\Http\\Controllers\\Admin\\CategoryController');
 
+        Route::post('photos/remove', '\\App\\Http\\Controllers\\Admin\\ProductPhotoController@removePhoto')->name('photo.remove');
 
 
     });
