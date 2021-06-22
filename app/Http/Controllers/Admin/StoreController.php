@@ -3,15 +3,21 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreRequest;
 use Illuminate\Http\Request;
 
 class StoreController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('user.has.store')->only('create','store');
+    }
     public function index()
     {
-        $stores = \App\Models\Store::paginate(20);
 
-        return view('admin.stores.index', compact('stores'));
+        $store = auth()->user()->store;
+
+        return view('admin.stores.index', compact('store'));
     }
     public function create()
     {
@@ -20,10 +26,16 @@ class StoreController extends Controller
         return view('admin.stores.create', compact('users'));
     }
 
-    public function store(Request $request)
+    public function store(StoreRequest $request)
     {
+        if(auth()->user()->store->count()){
+            flash('Você já possui uma loja ativa');
+            return redirect()->route('admin.stores.index');
+        }
+
         $data = $request->all();
-        $user = \App\Models\User::find($data['user']);
+        $user=auth()->user()->name();
+
         $store = $user->store()->create($data);
 
         flash('Loja criada com sucesso!')->success();
@@ -38,11 +50,11 @@ class StoreController extends Controller
         return view('admin.stores.edit', compact('store', 'users'));
 
     }
-        public function update (Request $request, $store)
+        public function update (StoreRequest $request, $store)
     {
         $data = $request->all();
 
-        $store = \App\Models\Store::find($store);
+        $store = $this->store->find($store);
         $store -> update($data);
 
         flash('Loja atualizada com sucesso!')->success();
@@ -57,6 +69,7 @@ class StoreController extends Controller
         flash('Loja removida com sucesso!')->success();
         return redirect ()->route('admin.stores.index');
     }
+
 
 
 
