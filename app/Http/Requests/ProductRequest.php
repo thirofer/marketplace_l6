@@ -24,17 +24,19 @@ class ProductRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
-            'description' => 'required|min:5',
-            'body' => 'required',
-            'price' => 'required|min:2',
+            'name'          => 'required',
+            'description'   => 'required|min:5',
+            'body'          => 'required',
+            'price'         => 'required|min:2',
+            'logo'          => 'image',
         ];
     }
     public function messages()
     {
         return [
             'required' => 'Este campo é obrigatório',
-            'min' => 'Campo deve ter no mínimo :min caracteres'
+            'min' => 'Campo deve ter no mínimo :min caracteres',
+            'image'        => 'O tipo de arquivo não é uma imagem'
         ];
     }
 }

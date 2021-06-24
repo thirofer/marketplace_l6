@@ -28,8 +28,9 @@
         </div>
 
         <div class="form-group">
-            <label for="">Slug</label>
-            <input type="text" name="slug"class="form-control" value="{{$store->slug}}">
+            <p>
+                <img src="{{assets('storage/' . $store->logo)}}" alt="">
+            </p>
         </div>
         <br>
         <div>
@@ -37,20 +38,5 @@
         </div>
 
     </form>
-
-{{--    <hr>--}}
-{{--    <div class="row">--}}
-{{--        @foreach($product->photos as $photo)--}}
-{{--            <div class="col-4 text-center">--}}
-{{--                <img src="{{asset('storage/' . $photo->image)}}" alt="" class="img-fluid">--}}
-{{--                <form action="{{route('admin.photo.remove')}}" method="post">--}}
-{{--                    @csrf--}}
-
-{{--                    <input type="hidden" name="photoName" value="{{$photo->image}}">--}}
-{{--                    <button type="submit" class="btn btn-danger">Remover</button>--}}
-{{--                </form>--}}
-{{--            </div>--}}
-{{--        @endforeach--}}
-{{--    </div>--}}
 
 @endsection
