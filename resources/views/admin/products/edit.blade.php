@@ -57,7 +57,7 @@
             <label>Categorias</label>
             <select name="categories[]" id="" class="form-control" multiple>
                 @foreach($categories as $category)
-                    <option value="{{$category->id}}}"
+                    <option value="{{$category->id}}"
                         @if($product->categories->contains($category)) selected @endif
                     >{{$category->name}}</option>
                 @endforeach
@@ -69,7 +69,7 @@
             <input type="file" name="photos[]" class="form-control @error('photos') is-invalid @enderror " multiple>
             @error('photos')
                 <div class="invalid-feedback">
-                    {{message}}
+                    {{$message}}
                 </div>
             @enderror
         </div>
