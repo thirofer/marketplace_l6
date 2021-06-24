@@ -3,7 +3,7 @@
 
 @section('content')
     <h6>Criar Categoria</h6>
-    <form action="{{route('admin.categories.store')}}" method="post">
+    <form action="{{route('admin.categories.store')}}" method="post" >
         <input type="hidden" name="_token" value="{{csrf_token()}}">
         <div class="form-group">
             <label>Nome</label>

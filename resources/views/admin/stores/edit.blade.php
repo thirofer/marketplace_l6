@@ -29,7 +29,7 @@
 
         <div class="form-group">
             <p>
-                <img src="{{assets('storage/' . $store->logo)}}" alt="">
+{{--                <img src="{{assets('storage/' . $store->logo)}}" alt="">--}}
             </p>
         </div>
         <br>
