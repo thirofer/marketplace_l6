@@ -5,12 +5,14 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreRequest;
 use Illuminate\Http\Request;
+use App\Traits\UploadTrait;
 
 class StoreController extends Controller
 {
+    use UploadTrait;
     public function __construct()
     {
-        $this->middleware('user.has.store')->only('create','store');
+        //$this->middleware('user.has.store')->only('create','store');
     }
     public function index()
     {
@@ -36,10 +38,12 @@ class StoreController extends Controller
         $data = $request->all();
         $user=auth()->user()->name();
 
+
         if($request -> hasFile('logo')){
-            $data['logo'] = $this->imageUpload($request->file( 'logo'));
+            $data['logo'] = $this->imageUpload($request->file('logo'));
         }
 
+        $store = $user->store()->create($data);
         $store = $user->store()->create($data);
 
         flash('Loja criada com sucesso!')->success();
@@ -59,6 +63,8 @@ class StoreController extends Controller
         $data = $request->all();
 
         $store = \App\Models\Store::find($store);
+
+        $data['logo'] = $this->imageUpload($request->file('logo'));
 
 
         flash('Loja atualizada com sucesso!')->success();

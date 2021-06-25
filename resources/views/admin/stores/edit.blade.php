@@ -23,16 +23,20 @@
         </div>
 
         <div class="form-group">
-            <label>Fotos da loja</label>
-            <input type="file" name="photos[]" class="form-control">
-        </div>
-
-        <div class="form-group">
             <p>
-{{--                <img src="{{assets('storage/' . $store->logo)}}" alt="">--}}
+                <img src="{{asset('storage/' . $store->logo)}}" alt="">
             </p>
+
+        <label>Fotos do da Loja</label>
+        <input type="file" name="logo" class="form-control  @error('logo') is-invalid @enderror">
+        @error('logo')
+        <div class="invalid-feedback">
+            {{$message}}
         </div>
+        @enderror
+
         <br>
+
         <div>
             <button type="submit" class="btn btn-success">Atualizar Loja</button>
         </div>
