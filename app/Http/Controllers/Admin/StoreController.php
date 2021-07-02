@@ -30,11 +30,6 @@ class StoreController extends Controller
 
     public function store(StoreRequest $request)
     {
-        if(auth()->user()->store->count()){
-            flash('Você já possui uma loja ativa');
-            return redirect()->route('admin.stores.index');
-        }
-
         $data = $request->all();
         $user=auth()->user()->name();
 

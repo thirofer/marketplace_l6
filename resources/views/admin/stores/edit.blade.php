@@ -23,9 +23,7 @@
         </div>
 
         <div class="form-group">
-            <p>
-                <img src="{{asset('storage/' . $store->logo)}}" alt="">
-            </p>
+
 
         <label>Fotos do da Loja</label>
         <input type="file" name="logo" class="form-control  @error('logo') is-invalid @enderror">
